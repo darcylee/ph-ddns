@@ -39,8 +39,9 @@ Install
 Configuration
 -------------
 
-配置 | 说明
-----|-----
-IP_URL | 获取公网IP的服务
-AUTHROIZATION | 花生壳的身份认证 Key，username:password 做 base64 encode, 详情见 [文档:花生壳:http协议说明](http://service.oray.com/question/3820.html)
-DEBUG | 非0输出更多的信息
+| 配置     | 说明                                                                                     |
+|----------|------------------------------------------------------------------------------------------|
+| HOSTNAME | 在花生壳上的域名名称                                                                     |
+| USERNAME | 花生壳注册的用户名                                                                       |
+| PASSWORD | 花生壳密码 详情见 [文档:花生壳:http协议说明](http://service.oray.com/question/3820.html) |
+| DEBUG    | 非0输出更多的信息                                                                        |
