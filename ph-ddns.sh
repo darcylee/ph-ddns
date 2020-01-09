@@ -10,29 +10,31 @@ CONFIG_FILE=${1:-$BIN_PATH/config}
 # include config file
 . $CONFIG_FILE
 
-CMD_GET_IP="curl -s $IP_URL"
-[[ $DEBUG -ne 0 ]] && echo $CMD_GET_IP
+# CMD_GET_IP="curl -s $IP_URL"
+# [[ $DEBUG -ne 0 ]] && echo $CMD_GET_IP
 
-IP=`$CMD_GET_IP`
-[ $? -ne 0 ] && echo "Oops. Cannot get extenal IP!" && exit 1
+# IP=`$CMD_GET_IP`
+# [ $? -ne 0 ] && echo "Oops. Cannot get extenal IP!" && exit 1
 
-if [[ ( -f "$OLD_IP" ) && ( "$IP" = "`cat $OLD_IP`" ) ]]
-then
-    # IP No Change.
-    [[ $DEBUG -ne 0 ]] && echo "$IP IP No change."
-    exit 0
-fi
+# if [[ ( -f "$OLD_IP" ) && ( "$IP" = "`cat $OLD_IP`" ) ]]
+# then
+#     # IP No Change.
+#     [[ $DEBUG -ne 0 ]] && echo "$IP IP No change."
+#     exit 0
+# fi
 
 # update DDSN
 echo "Run @ `date '+%F %R:%S'`"
-echo "Updating DDNS... Current IP: $IP"
+echo "Updating DDNS..."
 
-AUTH_HEADER="Authorization: Basic ${AUTHORIZATION}"
-CMD_UPDATE_DDNS=( curl -s -H "${AUTH_HEADER}" -A "${USERAGENT}" "${DDNS_UPDATE_URL}${IP}" )
+# AUTH_HEADER="Authorization: Basic ${AUTHORIZATION}"
+# CMD_UPDATE_DDNS=( curl -s -H "${AUTH_HEADER}" -A "${USERAGENT}" "${DDNS_UPDATE_URL}${IP}" )
+
+CMD_UPDATE_DDNS=( wget -q -O- "http://${USERNAME}:${PASSWORD}@${DDNS_UPDATE_URL}${HOSTNAME}" )
 [[ $DEBUG -ne 0 ]] && echo ${CMD_UPDATE_DDNS[@]}
 
 RESULT=`"${CMD_UPDATE_DDNS[@]}"`
 [ $? -ne 0 ] && echo "Update Error." $RESULT && exit 1 || echo $RESULT
 
 # save current ip
-echo $IP > $OLD_IP
+# echo $IP > $OLD_IP

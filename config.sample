@@ -1,11 +1,14 @@
-# get extenal ip
-# IP_URL:
-#   http://whatismyip.akamai.com
-#   http://ipecho.net/plain
-IP_URL="http://whatismyip.akamai.com"
-DDNS_UPDATE_URL="http://ddns.oray.com/ph/update?hostname=&myip="
-USERAGENT="Oray"
-# AUTHORIZATION=base64_encode(username:password)
-AUTHORIZATION=
-OLD_IP="/tmp/MyIP"
+# oray update url: http://username:password@ddns.oray.com/ph/update?hostname=yourhostname&myip=ipaddress
+DDNS_UPDATE_URL="ddns.oray.com/ph/update?hostname="
+
+# host name
+HOSTNAME=yourhostname
+
+# username
+USERNAME=username
+
+# passwd
+PASSWORD=passwd
+
+# debug
 # DEBUG=1
